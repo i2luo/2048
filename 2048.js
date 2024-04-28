@@ -128,6 +128,15 @@ function slide(row) {
     return row;
 }
 
+function rowcmp(row1, row2) {
+    for (let i = 0; i < rows; i++) {
+        if (row1[i] != row2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 function slideLeft() {
     for (let r = 0; r < rows; r++) {
         let row = board[r];
@@ -140,6 +149,7 @@ function slideLeft() {
             updateTile(tile, num);
         }
     }
+    // console.log(rowcmp(board[1], board[2]));
 }
 
 function slideRight() {
