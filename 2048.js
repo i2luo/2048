@@ -39,6 +39,19 @@ function setGame() {
     setTwo();
 }
 
+function resetGame() {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            board[r][c] = 0;
+            let tile = document.getElementById(r.toString() + "-" + c.toString());
+            updateTile(tile, 0);
+        }
+    }
+    setTwo();
+    setTwo();
+    score = 0;
+}
+
 function hasEmptyTile() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
@@ -79,6 +92,29 @@ function setTwo() {
     }
 }
 
+function checklose() {
+    if (hasEmptyTile()) {
+        return false;
+    }
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if (r >= 1 && board[r-1][c] == board[r][c]) {
+                return false;
+            }
+            if (r <= 2 && board[r+1][c] == board[r][c]) {
+                return false;
+            }
+            if (c >= 1 && board[r][c-1] == board[r][c]) {
+                return false;
+            }
+            if (c <= 2 && board[r][c+1] == board[r][c]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 function updateTile(tile, num) {
     tile.innerText = "";
     tile.classList.value = "";
@@ -98,21 +134,34 @@ document.addEventListener("keyup", (e) => {
     if (e.code == "ArrowLeft") {
         if(!slideLeft()) {
             setTwo();
+            console.log(checklose());
+            if (checklose()) {
+                resetGame();
+            }
         }
     }
     else if (e.code == "ArrowRight") {
         if(!slideRight()) {
             setTwo();
+            if (checklose()) {
+                resetGame();
+            }
         }
     }
     else if (e.code == "ArrowUp") {
         if(!slideUp()) {
             setTwo();
+            if (checklose()) {
+                resetGame();
+            }
         }
     }
     else if (e.code == "ArrowDown") {
         if(!slideDown()) {
             setTwo();
+            if (checklose()) {
+                resetGame();
+            }
         }
     }
     document.getElementById("score").innerText = score;
