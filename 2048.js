@@ -1,4 +1,3 @@
-
 var board;
 var temp_board;
 var score = 0;
@@ -135,7 +134,6 @@ document.addEventListener("keyup", (e) => {
     if (e.code == "ArrowLeft") {
         if(!slideLeft()) {
             setTwo();
-            console.log(checklose());
             if (checklose()) {
                 resetGame();
             }
