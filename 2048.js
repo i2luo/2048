@@ -2,6 +2,7 @@
 var board;
 var temp_board;
 var score = 0;
+var high_score = 0;
 var rows = 4;
 var columns = 4;
 
@@ -165,6 +166,7 @@ document.addEventListener("keyup", (e) => {
         }
     }
     document.getElementById("score").innerText = score;
+    document.getElementById("high_score").innerText = high_score;
 })
 
 function filterZero(row) {
@@ -179,6 +181,9 @@ function slide(row) {
             row[i] *= 2;
             row[i + 1] = 0;
             score += row[i];
+            if (score > high_score) {
+                high_score = score;
+            }
         }
     }
 
