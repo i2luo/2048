@@ -195,9 +195,9 @@ function slide(row) {
 }
 
 function boardcmp() {
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++){
-            if (board[i][j] != temp_board[i][j]) {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++){
+            if (board[r][c] != temp_board[r][c]) {
                 return false;
             }
         }
@@ -206,9 +206,9 @@ function boardcmp() {
 }
 
 function boardset() {
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++){
-            temp_board[i][j] = board[i][j];
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++){
+            temp_board[r][c] = board[r][c];
         }
     }
 }
